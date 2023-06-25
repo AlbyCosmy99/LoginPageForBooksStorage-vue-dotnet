@@ -113,7 +113,7 @@ export default {
     background-color: #affaf9;
 }
 .text-start:hover {
-    background-color: aqua !important;
+    background-color: #d4feff !important;
 }
 .v-data-table, th, .v-select__selection {
     color: blue !important;
