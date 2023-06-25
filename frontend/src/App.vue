@@ -46,7 +46,6 @@ export default {
       this.username = username
       this.name = 'name prova'
       this.surname = 'surname prova'
-      console.log('emit called')
       if(!this.userLogged) {
         this.userLogged = true
       }
