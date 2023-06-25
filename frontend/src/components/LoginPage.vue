@@ -24,13 +24,26 @@
 </template>
 
 <script>
+  import {loginAttempt} from "@/services/service.js"
   export default {
     name: 'LoginPage',
 
     data: () => ({
       username: '',
-      password: ''
+      password: '',
     }),
+    methods: {
+      login() {
+        console.log('login')
+        loginAttempt(this.username, this.password)
+        .then(() => {
+          console.log('login ok')
+        })
+        .catch(() => {
+          console.log('login not ok')
+        });
+      }
+    }
   }
 </script>
 
