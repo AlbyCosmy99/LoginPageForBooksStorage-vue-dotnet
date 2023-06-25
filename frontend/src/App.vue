@@ -6,9 +6,8 @@
         <LoginPage/>
       </div>
       <div v-else>
-        <UserPage/>
-      </div>
-      
+        <UserPage :name="name" :surname="surname"/>
+      </div>    
     </v-main>
   </v-app>
 </template>
@@ -27,7 +26,16 @@ export default {
 
   data: () => ({
     userLogged: true,
-    showButton: false
+    showButton: false,
+    username: '',
+    name: 'ANDREI',
+    surname: 'ALBU',
+    icons: [
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+      ],
   }),
   emits:['login'],
   methods: {
