@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Routing;
+using static loginPage_v1.Controllers.LoginController;
 
 namespace loginPage_v1.Controllers
 {
@@ -41,7 +42,7 @@ namespace loginPage_v1.Controllers
         [Route("")]
         public HttpResponseMessage Login()
         {
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK, "acsvc");
         }
     }
 }

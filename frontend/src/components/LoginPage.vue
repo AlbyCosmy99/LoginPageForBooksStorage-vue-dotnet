@@ -24,7 +24,8 @@
 </template>
 
 <script>
-  import {loginAttempt} from "@/services/service.js"
+  // import {loginAttempt} from "@/services/service.js"
+  import axios from 'axios'
   export default {
     name: 'LoginPage',
 
@@ -34,13 +35,17 @@
     }),
     methods: {
       login() {
-        loginAttempt(this.username, this.password)
+        // loginAttempt(this.username, this.password)
+        // .then(() => {
+        //   console.log('login ok')
+        // })
+        // .catch(() => {
+        //   console.log('login not ok')
+        // });
+        axios.get("https://localhost:44350")
         .then(() => {
-          console.log('login ok')
+          console.log('users ok')
         })
-        .catch(() => {
-          console.log('login not ok')
-        });
       }
     }
   }

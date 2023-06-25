@@ -7,10 +7,10 @@ namespace loginPage_v1
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
-        {
-            config.EnableCors();
-
+        { 
             config.MapHttpAttributeRoutes();
+
+            config.EnableCors();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
