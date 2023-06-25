@@ -4,12 +4,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Routing;
-using System.Web.UI;
 
 namespace loginPage_v1.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
-    [RoutePrefix("login")]
+    [RoutePrefix("login")]   
     public class LoginController : ApiController
     {
         private readonly LoginsService _loginsService;
@@ -35,7 +34,7 @@ namespace loginPage_v1.Controllers
 
             _loginsService.existUser(loginInfo.Username, loginInfo.Password);
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.OK,loginInfo.Username + " " + loginInfo.Password);
         }
 
         [HttpGet]

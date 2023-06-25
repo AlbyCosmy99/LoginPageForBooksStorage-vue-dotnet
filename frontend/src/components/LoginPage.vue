@@ -34,7 +34,6 @@
     }),
     methods: {
       login() {
-        console.log('login')
         loginAttempt(this.username, this.password)
         .then(() => {
           console.log('login ok')

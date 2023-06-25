@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using loginPage_v1.Services;
-using System.Configuration;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace loginPage_v1
 {
