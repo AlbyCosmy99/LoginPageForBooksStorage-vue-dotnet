@@ -2,6 +2,7 @@
   <v-container class="card">
     <v-form fast-fail @submit.prevent class="form">
       <v-text-field
+        style="padding-top: 30px;"
         v-model="username"
         label="username"
         class="text-field"
@@ -46,10 +47,11 @@
         else {
           loginAttempt(this.username, this.password)
           .then(() => {
-            console.log('login ok')
+            console.log('login ok') //event->login
+            this.$emit('login')
           })
-          .catch(() => {
-            console.log('login not ok')
+          .catch((error) => {
+            alert(error.message)  //alert -> credentials are not correct
           });
         }  
       },
@@ -65,7 +67,7 @@
 <style scoped>
 .card {
   width: 300px;
-  height: 250px;
+  height: 280px;
   margin: 200px auto;
   border-radius: 20px;
   background-color: aqua;
@@ -96,4 +98,10 @@
 .cursor-pointer {
   cursor: pointer;
 }
+.v-text-field fieldset, .v-text-field .v-input__control, .v-text-field .v-input__slot  {
+  background: aqua !important;
+  border-radius: 20px !important;
+  padding-left: 20px !important;
+}
+
 </style>

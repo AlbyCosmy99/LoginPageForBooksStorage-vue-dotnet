@@ -1,4 +1,6 @@
-﻿using loginPage_v1.Services;
+﻿using loginPage_v1.myExceptions;
+using loginPage_v1.Services;
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -29,12 +31,19 @@ namespace loginPage_v1.Controllers
         {
             if (loginInfo == null || string.IsNullOrEmpty(loginInfo.Username) || string.IsNullOrEmpty(loginInfo.Password))
             {
-                Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Credentials are fully or partially null.");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Username and password must be given.");
             }
 
-            _loginsService.existUser(loginInfo.Username, loginInfo.Password);
+            try
+            {
+                _loginsService.existUser(loginInfo.Username, loginInfo.Password);
+            }
+            catch(LoginFailedException ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest,ex.Message);
+            }
 
-            return Request.CreateResponse(HttpStatusCode.OK,loginInfo.Username + " " + loginInfo.Password);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [HttpGet]

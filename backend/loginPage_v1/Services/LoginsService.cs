@@ -22,7 +22,7 @@ namespace loginPage_v1.Services
                 .Where(x => x.UserName == username && x.Password == password)
                 .Any();
 
-            if(user == null)
+            if(!user)
             {
                 throw new LoginFailedException("Credentials are not correct.");
             }

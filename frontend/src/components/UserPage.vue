@@ -132,7 +132,7 @@ th {
 .v-data-table__mobile-table-row:hover {
     background-color: #affaf9 !important;
 }
-.v-input__control {
+v-data-table .v-input__control {
     background: #affaf9 !important;
 }
 .theme--light.v-chip:not(.v-chip--active) {

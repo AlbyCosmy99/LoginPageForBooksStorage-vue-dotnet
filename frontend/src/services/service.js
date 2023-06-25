@@ -4,9 +4,9 @@ var axs = axios.create({
     baseURL : 'https://localhost:44350',
 });
 
-export function loginAttempt(USurname, UPassword){
+export function loginAttempt(Username, UPassword){
     return axs.post("/login",{
-        Surname: USurname,
+        Username: Username,
         Password: UPassword
     });
 }
