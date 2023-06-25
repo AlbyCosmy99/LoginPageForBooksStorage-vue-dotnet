@@ -5,6 +5,7 @@
         v-model="username"
         label="username"
         class="text-field"
+        @click="disableNoCredentialsNoty"
       ></v-text-field>
 
       <v-text-field
@@ -12,7 +13,11 @@
         type="password"
         label="password"
         class="text-field"
+        @click="disableNoCredentialsNoty"
         ></v-text-field>
+        <div style="height: 10px;;margin-bottom: 10px;">
+          <h6 v-if="notGivenCredentials" style="color: red;text-align: center;">Username and password must be both given!</h6>
+        </div>
 
       <v-btn type="submit" block class="btn" @click="login">Login</v-btn>
     </v-form>
@@ -24,29 +29,36 @@
 </template>
 
 <script>
-  // import {loginAttempt} from "@/services/service.js"
-  import axios from 'axios'
+  import {loginAttempt} from "@/services/service.js"
   export default {
     name: 'LoginPage',
 
     data: () => ({
       username: '',
       password: '',
+      notGivenCredentials: false
     }),
     methods: {
       login() {
-        // loginAttempt(this.username, this.password)
-        // .then(() => {
-        //   console.log('login ok')
-        // })
-        // .catch(() => {
-        //   console.log('login not ok')
-        // });
-        axios.get("https://localhost:44350")
-        .then(() => {
-          console.log('users ok')
-        })
+        if(this.username.trim() == '' || this.password.trim() == ''){
+          this.notGivenCredentials = true
+        }
+        else {
+          loginAttempt(this.username, this.password)
+          .then(() => {
+            console.log('login ok')
+          })
+          .catch(() => {
+            console.log('login not ok')
+          });
+        }  
+      },
+      disableNoCredentialsNoty() {
+        if(this.notGivenCredentials) {
+          this.notGivenCredentials = false
+        }
       }
+
     }
   }
 </script>

@@ -4,11 +4,10 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Routing;
-using static loginPage_v1.Controllers.LoginController;
 
 namespace loginPage_v1.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     [RoutePrefix("login")]   
     public class LoginController : ApiController
     {
