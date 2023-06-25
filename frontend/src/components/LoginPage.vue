@@ -58,8 +58,7 @@
           this.notGivenCredentials = false
         }
       }
-
-    }
+    },
   }
 </script>
 
