@@ -5,10 +5,19 @@
         </header>
         <div class="flex-container">
             <div class="table">
+                <v-text-field
+                    v-model="search"
+                    append-icon="mdi-magnify"
+                    label="Search by title"
+                    single-line
+                    hide-details
+                    class="search-field"
+                ></v-text-field>
                 <v-data-table
                     style="background-color: #affaf9;"
                     :headers="headers"
                     :items="books"
+                    :search="search"
                     :items-per-page="5"
                     class="elevation-1"
                 ></v-data-table>
@@ -26,6 +35,7 @@ export default {
             name: '',
             surname: '',
             id: 1,
+            search: '',
             headers: [
                 { text: 'ID', value: 'BookId' },
                 { text: 'TITLE', value: 'Title' },
@@ -57,7 +67,7 @@ export default {
                 this.surname = response.data.Surname;
             })
             .catch(() => {
-                alert('username ' + this.username + ' not exists.')
+                console.log('username ' + this.username + ' not exists.')
             });
         },
         getUserBooks() {
@@ -124,8 +134,9 @@ th {
 .v-data-table__mobile-table-row:hover {
     background-color: #affaf9 !important;
 }
-v-data-table .v-input__control {
+div.table .v-input__control {
     background: #affaf9 !important;
+    padding-left: 10px;
 }
 .theme--light.v-chip:not(.v-chip--active) {
     background: aqua !important;
@@ -138,5 +149,13 @@ v-data-table .v-input__control {
 }
 .v-chip__content {
     color: blue;
+}
+.search-field {
+    margin: 5px;
+    padding: 0px 20px 8px 20px;
+    border-bottom: 2px solid blue;
+}
+.main {
+    background-color: aqua;
 }
 </style>

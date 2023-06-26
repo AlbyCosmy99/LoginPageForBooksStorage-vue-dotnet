@@ -25,7 +25,7 @@ export default {
   },
 
   data: () => ({
-    userLogged: false,
+    userLogged: true,
     showButton: false,
     username: '',
   }),
