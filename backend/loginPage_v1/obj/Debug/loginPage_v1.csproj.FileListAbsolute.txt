@@ -126,8 +126,6 @@ C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\System.Net.Http.Format
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\System.Web.Http.xml
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\System.Web.Http.WebHost.xml
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.csproj.AssemblyReference.cache
-C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.Migrations.loginpagemigration.resources
-C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.csproj.GenerateResource.cache
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.csproj.CoreCompileInputs.cache
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.csproj.CopyComplete
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.dll

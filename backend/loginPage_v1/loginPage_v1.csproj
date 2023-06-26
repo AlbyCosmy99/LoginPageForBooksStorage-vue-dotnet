@@ -317,11 +317,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202306250114247_loginpagemigration.cs" />
-    <Compile Include="Migrations\202306250114247_loginpagemigration.designer.cs">
-      <DependentUpon>202306250114247_loginpagemigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="myExceptions\LoginFailedException.cs" />
     <Compile Include="PageContext\Ctx.cs" />
@@ -339,11 +334,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202306250114247_loginpagemigration.resx">
-      <DependentUpon>202306250114247_loginpagemigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
