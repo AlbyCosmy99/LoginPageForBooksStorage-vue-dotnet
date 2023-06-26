@@ -22,6 +22,7 @@ namespace loginPage_v1.Services
                 users => users.Id,
                 uBooks => uBooks.User.Id,
                 (users, uBooks) => uBooks)
+                .OrderByDescending(x => x.FinishingDate)
                 .ToList();
         }
     }

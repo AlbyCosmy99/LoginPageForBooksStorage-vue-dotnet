@@ -37,6 +37,7 @@ namespace loginPage_v1.App_Start
                     .ForMember(dest => dest.PublicationYear, opt => opt.MapFrom(src => src.PublicationYear))
                     .ForMember(dest => dest.Pages, opt => opt.MapFrom(src => src.Pages))
                     .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre))
+                    .ForMember(dest => dest.FinishingDate, opt => opt.MapFrom(src => src.FinishingDate.ToString().Split(' ')[0]))
                     .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))
                     .ForMember(dest => dest.PersonalRating, opt => opt.MapFrom(src => src.PersonalRating))
                     .ForMember(dest => dest.Notes, opt => opt.MapFrom(src => src.Notes));

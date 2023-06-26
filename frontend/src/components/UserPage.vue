@@ -14,13 +14,31 @@
                     class="search-field"
                 ></v-text-field>
                 <v-data-table
-                    style="background-color: #affaf9;"
+                    style="background-color: #affaf9;" 
                     :headers="headers"
                     :items="books"
                     :search="search"
-                    :items-per-page="5"
+                    :items-per-page="10"
                     class="elevation-1"
-                ></v-data-table>
+                >
+                    <v-card-actions>
+                        <v-spacer></v-spacer>
+                        <v-btn
+                            color="blue darken-1"
+                            text
+                            @click="close"
+                        >
+                            Cancel
+                        </v-btn>
+                        <v-btn
+                            color="blue darken-1"
+                            text
+                            @click="save"
+                        >
+                            Save
+                        </v-btn>
+                    </v-card-actions>
+                </v-data-table>
             </div>
         </div>
     </v-main>
@@ -44,7 +62,7 @@ export default {
                 { text: 'PUBBLICATION YEAR', value: 'PublicationYear' },
                 { text: 'PAGES', value: 'Pages' },
                 { text: 'GENRE', value: 'Genre' },
-                { text: 'FINISHED IN DATE', value: 'FinishingDate' },
+                { text: 'FINISHING DATE', value: 'FinishingDate', sortable: false},
                 { text: 'PRICE', value: 'Price' },
                 { text: 'PERSONAL RATING', value: 'Rating' },
                 { text: 'NOTES', value: 'Notes', sortable: false},
@@ -137,6 +155,8 @@ th {
 div.table .v-input__control {
     background: #affaf9 !important;
     padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
 }
 .theme--light.v-chip:not(.v-chip--active) {
     background: aqua !important;
