@@ -18,63 +18,28 @@
 </template>
 
 <script>
-import {getFullName} from "@/services/service.js"
+import {getFullName, getUserBooks} from "@/services/service.js"
 export default {
     name: 'UserPage',
     data() {
         return {
             name: '',
             surname: '',
+            id: 1,
             headers: [
-                { text: 'TITLE', value: 'title' },
-                { text: 'AUTHOR', value: 'author' },
-                { text: 'LANGUAGE', value: 'language' },
-                { text: 'PUBBLICATION YEAR', value: 'pubYear' },
-                { text: 'PAGES', value: 'pages' },
-                { text: 'GENRE', value: 'genre' },
-                { text: 'FINISHED IN DATE', value: 'finishingDate' },
-                { text: 'PRICE', value: 'price' },
-                { text: 'PERSONAL RATING', value: 'rating' },
-                { text: 'NOTES', value: 'notes', sortable: false},
+                { text: 'ID', value: 'BookId' },
+                { text: 'TITLE', value: 'Title' },
+                { text: 'AUTHOR', value: 'Author' },
+                { text: 'LANGUAGE', value: 'Language' },
+                { text: 'PUBBLICATION YEAR', value: 'PublicationYear' },
+                { text: 'PAGES', value: 'Pages' },
+                { text: 'GENRE', value: 'Genre' },
+                { text: 'FINISHED IN DATE', value: 'FinishingDate' },
+                { text: 'PRICE', value: 'Price' },
+                { text: 'PERSONAL RATING', value: 'Rating' },
+                { text: 'NOTES', value: 'Notes', sortable: false},
             ],
-            books: [
-                {
-                    title: 'Frozen Yogurt',
-                    author: 159,
-                    language: 6.0,
-                    pubYear: 24,
-                    pages: 4.0,
-                    genre: 1,
-                    finishingDate: 159,
-                    price: 6.0,
-                    rating: 24,
-                    notes: 4.0,
-                },
-                {
-                    title: 'Frozen Yogurt',
-                    author: 159,
-                    language: 6.0,
-                    pubYear: 24,
-                    pages: 4.0,
-                    genre: 1,
-                    finishingDate: 159,
-                    price: 6.0,
-                    rating: 24,
-                    notes: 4.0,
-                },
-                {
-                    title: 'Frozen Yogurt',
-                    author: 159,
-                    language: 6.0,
-                    pubYear: 24,
-                    pages: 4.0,
-                    genre: 1,
-                    finishingDate: 159,
-                    price: 6.0,
-                    rating: 24,
-                    notes: 4.0,
-                },
-            ]
+            books: []
         }
     },
     props : {
@@ -82,17 +47,27 @@ export default {
     },
     mounted() {
         this.getFullName();
+        this.getUserBooks();
     },
     methods: {
         getFullName() {
             getFullName(this.username)
             .then(response => {
-                this.name = response.data.name;
-                this.surname = response.data.surname;
+                this.name = response.data.Name;
+                this.surname = response.data.Surname;
             })
             .catch(() => {
                 alert('username ' + this.username + ' not exists.')
             });
+        },
+        getUserBooks() {
+            getUserBooks(this.username)
+            .then(response => {
+                this.books = response.data
+            })
+            .catch(() => {
+                console.log('User books not received correctly.')
+            })
         }
     }
     

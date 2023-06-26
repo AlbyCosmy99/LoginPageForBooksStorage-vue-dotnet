@@ -12,7 +12,10 @@ export function loginAttempt(Username, UPassword){
 }
 
 export function getFullName(Username){
-    console.log('right place' + Username)
     return axs.get('/users/fullname/' + Username);
+}
+
+export function getUserBooks(Username){
+    return axs.get('/books/' + Username);
 }
 

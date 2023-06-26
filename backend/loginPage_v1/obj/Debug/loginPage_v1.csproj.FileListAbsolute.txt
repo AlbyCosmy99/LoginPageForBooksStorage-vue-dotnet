@@ -285,3 +285,5 @@ C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\DelegateDecompiler.Ent
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\Mono.Reflection.dll
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\AutoMapper.xml
 C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\bin\Mono.Reflection.pdb
+C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.Migrations.pageloginmigration.resources
+C:\Users\andre\Desktop\LoginPage\backend\loginPage_v1\obj\Debug\loginPage_v1.csproj.GenerateResource.cache

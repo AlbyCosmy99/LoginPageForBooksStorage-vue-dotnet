@@ -388,14 +388,22 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Dto\UserDto\UserFullnameDto.cs" />
+    <Compile Include="Dto\UsersBookDto\FullUsersBookDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306261519469_pageloginmigration.cs" />
+    <Compile Include="Migrations\202306261519469_pageloginmigration.designer.cs">
+      <DependentUpon>202306261519469_pageloginmigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\UsersBook.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="myExceptions\LoginFailedException.cs" />
     <Compile Include="PageContext\Ctx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LoginsService.cs" />
+    <Compile Include="Services\UsersBooksService.cs" />
     <Compile Include="Services\UsersService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -409,6 +417,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202306261519469_pageloginmigration.resx">
+      <DependentUpon>202306261519469_pageloginmigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

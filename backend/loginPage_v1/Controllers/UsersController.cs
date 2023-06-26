@@ -4,6 +4,8 @@ using System.Web.Http;
 using AutoMapper;
 using loginPage_v1.App_Start;
 using loginPage_v1.Dto.UserDto;
+using loginPage_v1.Dto.UsersBookDto;
+using loginPage_v1.Models;
 using loginPage_v1.Services;
 
 namespace loginPage_v1.Controllers
@@ -30,8 +32,7 @@ namespace loginPage_v1.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, $"User with username {username} doesn't exists.");
             }
-
-            return Request.CreateResponse(HttpStatusCode.OK,_mapper.Map<UserFullnameDto>(user));
+            return Request.CreateResponse(HttpStatusCode.OK, _mapper.Map<UserFullnameDto>(user));
 
 
         }

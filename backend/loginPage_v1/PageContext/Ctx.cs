@@ -11,5 +11,6 @@ namespace loginPage_v1.PageContext
     {
         public Ctx() : base("pagedb") { }
         public DbSet<User> Users { get; set; }
+        public DbSet<UsersBook> UsersBooks { get; set; }
     }
 }
