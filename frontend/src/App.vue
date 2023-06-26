@@ -6,7 +6,7 @@
         <LoginPage @login="login(username)"/>
       </div>
       <div v-else>
-        <UserPage :name="name" :surname="surname"/>
+        <UserPage :username="username"/>
       </div>    
     </v-main>
   </v-app>
@@ -28,8 +28,6 @@ export default {
     userLogged: false,
     showButton: false,
     username: '',
-    name: 'ANDREI',
-    surname: 'ALBU',
   }),
   emits : ['login'],
   methods: {
@@ -38,12 +36,10 @@ export default {
     },
     login(username) {
       this.username = username
-      this.name = 'name prova'
-      this.surname = 'surname prova'
+      console.log('app vue username: ' + username)
       if(!this.userLogged) {
         this.userLogged = true
       }
-
     }
   }
 };

@@ -18,65 +18,82 @@
 </template>
 
 <script>
+import {getFullName} from "@/services/service.js"
 export default {
     name: 'UserPage',
     data() {
         return {
+            name: '',
+            surname: '',
             headers: [
-            { text: 'TITLE', value: 'title' },
-            { text: 'AUTHOR', value: 'author' },
-            { text: 'LANGUAGE', value: 'language' },
-            { text: 'PUBBLICATION YEAR', value: 'pubYear' },
-            { text: 'PAGES', value: 'pages' },
-            { text: 'GENRE', value: 'genre' },
-            { text: 'FINISHED IN DATE', value: 'finishingDate' },
-            { text: 'PRICE', value: 'price' },
-            { text: 'PERSONAL RATING', value: 'rating' },
-            { text: 'NOTES', value: 'notes', sortable: false},
-        ],
-        books: [
-            {
-                title: 'Frozen Yogurt',
-                author: 159,
-                language: 6.0,
-                pubYear: 24,
-                pages: 4.0,
-                genre: 1,
-                finishingDate: 159,
-                price: 6.0,
-                rating: 24,
-                notes: 4.0,
-          },
-          {
-                title: 'Frozen Yogurt',
-                author: 159,
-                language: 6.0,
-                pubYear: 24,
-                pages: 4.0,
-                genre: 1,
-                finishingDate: 159,
-                price: 6.0,
-                rating: 24,
-                notes: 4.0,
-          },
-          {
-                title: 'Frozen Yogurt',
-                author: 159,
-                language: 6.0,
-                pubYear: 24,
-                pages: 4.0,
-                genre: 1,
-                finishingDate: 159,
-                price: 6.0,
-                rating: 24,
-                notes: 4.0,
-          },
-        ]
+                { text: 'TITLE', value: 'title' },
+                { text: 'AUTHOR', value: 'author' },
+                { text: 'LANGUAGE', value: 'language' },
+                { text: 'PUBBLICATION YEAR', value: 'pubYear' },
+                { text: 'PAGES', value: 'pages' },
+                { text: 'GENRE', value: 'genre' },
+                { text: 'FINISHED IN DATE', value: 'finishingDate' },
+                { text: 'PRICE', value: 'price' },
+                { text: 'PERSONAL RATING', value: 'rating' },
+                { text: 'NOTES', value: 'notes', sortable: false},
+            ],
+            books: [
+                {
+                    title: 'Frozen Yogurt',
+                    author: 159,
+                    language: 6.0,
+                    pubYear: 24,
+                    pages: 4.0,
+                    genre: 1,
+                    finishingDate: 159,
+                    price: 6.0,
+                    rating: 24,
+                    notes: 4.0,
+                },
+                {
+                    title: 'Frozen Yogurt',
+                    author: 159,
+                    language: 6.0,
+                    pubYear: 24,
+                    pages: 4.0,
+                    genre: 1,
+                    finishingDate: 159,
+                    price: 6.0,
+                    rating: 24,
+                    notes: 4.0,
+                },
+                {
+                    title: 'Frozen Yogurt',
+                    author: 159,
+                    language: 6.0,
+                    pubYear: 24,
+                    pages: 4.0,
+                    genre: 1,
+                    finishingDate: 159,
+                    price: 6.0,
+                    rating: 24,
+                    notes: 4.0,
+                },
+            ]
         }
     },
     props : {
-        name : String,
-        surname : String
+        username : String
+    },
+    mounted() {
+        this.getFullName();
+    },
+    methods: {
+        getFullName() {
+            getFullName(this.username)
+            .then(response => {
+                this.name = response.data.name;
+                this.surname = response.data.surname;
+            })
+            .catch(() => {
+                alert('username ' + this.username + ' not exists.')
+            });
+        }
     }
     
 }

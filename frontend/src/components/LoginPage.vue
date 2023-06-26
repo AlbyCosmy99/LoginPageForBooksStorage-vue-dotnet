@@ -48,7 +48,7 @@
           loginAttempt(this.username, this.password)
           .then(() => {
             console.log('login ok') //event->login
-            this.$emit('login')
+            this.$emit('login',this.username)
           })
           .catch((error) => {
             alert(error.message)  //alert -> credentials are not correct
