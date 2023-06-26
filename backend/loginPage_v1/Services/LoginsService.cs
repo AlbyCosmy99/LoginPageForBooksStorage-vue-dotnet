@@ -4,11 +4,7 @@ using System.Linq;
 
 namespace loginPage_v1.Services
 {
-    public interface ILoginsService
-    {
-        void existUser(string username, string password);
-    }
-    public class LoginsService : ILoginsService
+    public class LoginsService
     {
         private readonly Ctx _ctx;
         public LoginsService(Ctx ctx)

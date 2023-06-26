@@ -24,12 +24,11 @@ namespace loginPage_v1
             var builder = new ContainerBuilder();
             //register instance se pageContext avesse dei parametri che io voglio configurare
             //Builder.RegisterInstance(new PageContext()).AsSelf();
-            builder.RegisterType<PageContext.Ctx>();
-            builder.RegisterType<LoginsService>();
-            //builder.RegisterType<LoginsService>().As<ILoginsService>().InstancePerLifetimeScope();
+            builder.RegisterType<PageContext.Ctx>().InstancePerLifetimeScope();
+            builder.RegisterType<LoginsService>().InstancePerLifetimeScope();
 
             //Builder.RegisterInstance(new UsersServices(new PageContext())).AsSelf();
-            builder.Build();
+            var container = builder.Build();
         }
     }
 }
