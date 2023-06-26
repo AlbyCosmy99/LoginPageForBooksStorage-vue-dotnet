@@ -15,7 +15,7 @@ namespace loginPage_v1.Services
         public User GetUserFullname(string username)
         {
             return _ctx.Users
-                .Where(x => x.UserName == username)
+                .Where(x => x.UserName.ToUpper() == username.ToUpper())
                 .FirstOrDefault();
         }
     }

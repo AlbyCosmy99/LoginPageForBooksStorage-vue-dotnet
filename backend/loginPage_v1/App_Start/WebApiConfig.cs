@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using AutoMapper;
+using loginPage_v1.App_Start;
 using loginPage_v1.Services;
 using System.Configuration;
 using System.Web.Http;
@@ -22,13 +24,17 @@ namespace loginPage_v1
             );
 
             var builder = new ContainerBuilder();
-            //register instance se pageContext avesse dei parametri che io voglio configurare
-            //Builder.RegisterInstance(new PageContext()).AsSelf();
+            
             builder.RegisterType<PageContext.Ctx>().InstancePerLifetimeScope();
             builder.RegisterType<LoginsService>().InstancePerLifetimeScope();
 
+            builder.Build();
+
+            //register instance se pageContext avesse dei parametri che io voglio configurare
+            //Builder.RegisterInstance(new PageContext()).AsSelf();
+
+            //builder.RegisterInstance(AutomapperConfig.CreateMapper()).As<IMapper>().SingleInstance();
             //Builder.RegisterInstance(new UsersServices(new PageContext())).AsSelf();
-            var container = builder.Build();
         }
     }
 }
