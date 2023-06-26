@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using loginPage_v1.Services;
+using System.Configuration;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace loginPage_v1
 {
@@ -10,7 +12,8 @@ namespace loginPage_v1
         { 
             config.MapHttpAttributeRoutes();
 
-            config.EnableCors();
+            var corsConfig = new EnableCorsAttribute(ConfigurationManager.AppSettings["corsEnabledOrigins"], "*", "*");
+            config.EnableCors(corsConfig);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

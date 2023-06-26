@@ -30,12 +30,6 @@ export default {
     username: '',
     name: 'ANDREI',
     surname: 'ALBU',
-    icons: [
-        'mdi-facebook',
-        'mdi-twitter',
-        'mdi-linkedin',
-        'mdi-instagram',
-      ],
   }),
   emits : ['login'],
   methods: {

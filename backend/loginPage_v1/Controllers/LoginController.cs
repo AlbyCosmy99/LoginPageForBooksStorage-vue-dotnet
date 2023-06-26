@@ -9,7 +9,6 @@ using System.Web.Routing;
 
 namespace loginPage_v1.Controllers
 {
-    [EnableCors(origins: "http://localhost:8080", headers: "*", methods: "*")]
     [RoutePrefix("login")]   
     public class LoginController : ApiController
     {
@@ -44,13 +43,6 @@ namespace loginPage_v1.Controllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK);
-        }
-
-        [HttpGet]
-        [Route("")]
-        public HttpResponseMessage Login()
-        {
-            return Request.CreateResponse(HttpStatusCode.OK, "acsvc");
         }
     }
 }
