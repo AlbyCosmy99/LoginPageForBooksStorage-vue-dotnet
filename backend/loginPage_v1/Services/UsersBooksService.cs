@@ -25,5 +25,15 @@ namespace loginPage_v1.Services
                 .OrderByDescending(x => x.FinishingDate)
                 .ToList();
         }
+
+        public void DeleteBook(string username, int id)
+        {
+            var book = GetUserBooks(username)
+                .Where(x => x.BookId == id)
+                .First();
+            _ctx.UsersBooks.Remove(book);
+
+            _ctx.SaveChanges();
+        }
     }
 }

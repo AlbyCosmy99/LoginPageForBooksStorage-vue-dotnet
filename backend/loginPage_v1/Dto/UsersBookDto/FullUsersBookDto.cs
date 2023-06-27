@@ -5,6 +5,7 @@ namespace loginPage_v1.Dto.UsersBookDto
 {
     public class FullUsersBookDto
     {
+        public int DbId { get; set; }
         public int BookId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; } = null;

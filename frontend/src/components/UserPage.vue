@@ -46,7 +46,7 @@
                         <v-icon
                             small
                             style="color: red;"
-                            @click="deleteItem"
+                            @click="deleteItem(item)"
                         >
                             mdi-delete
                         </v-icon>
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import {getFullName, getUserBooks} from "@/services/service.js"
+import {getFullName, getUserBooks, deleteBook} from "@/services/service.js"
 export default {
     name: 'UserPage',
     data() {
@@ -76,6 +76,7 @@ export default {
             id: 1,
             search: '',
             dialogDelete: false,
+            bookIdToBeDeleted: -1,
             headers: [
                 { text: 'ID', value: 'BookId' },
                 { text: 'TITLE', value: 'Title' },
@@ -90,7 +91,21 @@ export default {
                 { text: 'NOTES', value: 'Notes', sortable: false},
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
-            books: []
+            books: [
+                {
+                    dbId: 1,
+                    title: 'Frozen Yogurt',
+                    author: 159,
+                    language: 6.0,
+                    pubYear: 24,
+                    pages: 4.0,
+                    genre: 1,
+                    finishingDate: 159,
+                    price: 6.0,
+                    rating: 24,
+                    notes: 4.0,
+            },
+            ]
         }
     },
     props : {
@@ -121,8 +136,26 @@ export default {
             })
         },
         deleteItem(item) {
+            this.bookIdToBeDeleted = item.DbId
             this.dialogDelete = true
-            console.log(item)
+        },
+        closeDelete() {
+            this.dialogDelete = false;
+        },
+        deleteItemConfirm() {
+            console.log('45')
+            deleteBook(this.username, this.bookIdToBeDeleted)
+            .then(() => {
+                console.log('46')
+                this.getUserBooks();
+            })
+            .catch((error) => {
+                console.log('47')
+                console.log(error.message)
+            });
+
+            this.bookIdToBeDeleted = -1
+            this.dialogDelete = false
         }
     }
     
@@ -206,12 +239,12 @@ div.table .v-input__control {
     background-color: aqua;
 }
 .deleteConfirmation {
-    color: blue;
+    color: red;
 }
 .v-card__title {
     justify-content: center;
 }
 .deleteCard {
-    background-image: radial-gradient(circle, rgba(255,150,0,1) 35%, rgba(0,14,171,1) 100%);
+    background: radial-gradient(circle, rgba(240,211,211,1) 24%, rgba(255,255,255,1) 54%, rgba(244,222,222,1) 60%, rgba(171,0,0,1) 100%);
 }
 </style>

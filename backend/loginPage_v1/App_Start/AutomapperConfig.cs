@@ -31,6 +31,7 @@ namespace loginPage_v1.App_Start
                     .ForMember(dest => dest.Surname, opt => opt.MapFrom(src => src.Surname));
 
                 config.CreateMap<UsersBook, FullUsersBookDto>()
+                    .ForMember(dest => dest.DbId, opt => opt.MapFrom(src => src.BookId))
                     .ForMember(dest => dest.Title, opt => opt.MapFrom(src => src.Title))
                     .ForMember(dest => dest.Author, opt => opt.MapFrom(src => src.Author))
                     .ForMember(dest => dest.BookLanguage, opt => opt.MapFrom(src => src.BookLanguage))

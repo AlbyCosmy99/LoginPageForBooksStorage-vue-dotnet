@@ -19,3 +19,7 @@ export function getUserBooks(Username){
     return axs.get('/books/' + Username);
 }
 
+
+export function deleteBook(Username,dbId){
+    return axs.delete('/books/' + Username + '/' + dbId);
+}

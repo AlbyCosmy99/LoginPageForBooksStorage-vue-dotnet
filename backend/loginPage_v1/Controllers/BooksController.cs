@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using loginPage_v1.App_Start;
-using loginPage_v1.Dto.UserDto;
 using loginPage_v1.Dto.UsersBookDto;
-using loginPage_v1.Models;
 using loginPage_v1.Services;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -24,6 +23,7 @@ namespace loginPage_v1.Controllers
         }
 
         [Route("books/{username}")]
+        [HttpGet]
         public HttpResponseMessage GetUserBook([FromUri] string username)
         {
             var userBooks = _usersBooksService.GetUserBooks(username);
@@ -40,6 +40,21 @@ namespace loginPage_v1.Controllers
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, userBooksDto);
+        }
+
+        [Route("books/{username}/{id}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteBook(string username, int id)
+        {
+            try
+            {
+                _usersBooksService.DeleteBook(username, id);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch(Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Book could't be deleted.");
+            }         
         }
     }
 }
