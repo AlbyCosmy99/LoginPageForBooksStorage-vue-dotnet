@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using loginPage_v1.App_Start;
 using loginPage_v1.Dto.UsersBookDto;
+using loginPage_v1.Models;
 using loginPage_v1.Services;
 using System;
 using System.Collections.Generic;
@@ -55,6 +56,43 @@ namespace loginPage_v1.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Book could't be deleted.");
             }         
+        }
+
+        public class BookRequest
+        {
+            public string Title { get; set; } = null; 
+            public string Author { get; set; } = null;
+            public string BookLanguage { get; set; } = null;
+            public int? PublicationYear { get; set; } = null;
+            public int? Pages { get; set; } = null;
+            public string Genre { get; set; } = null;
+            public DateTime? FinishingDate { get; set; } = null;
+            public string Price { get; set; } = null;
+            public string PersonalRating { get; set; } = null;
+            public string Notes { get; set; } = null;
+        }
+
+        [Route("books/{username}/{id}")]
+        [HttpPut]
+        public HttpResponseMessage UpdateBook(string username, int id, BookRequest book)
+        {
+            if(book == null || string.IsNullOrEmpty(book.Title))
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Book must be given in the body of the request. Title cannot be an empty string.");
+            }
+
+            try
+            {
+                var newBook = _usersBooksService.UpdateBook(username, id, book.Title, book.Author, book.BookLanguage, book.PublicationYear,
+                    book.Pages, book.Genre, book.FinishingDate, book.Price,
+                    book.PersonalRating, book.Notes);
+
+                return Request.CreateResponse(HttpStatusCode.OK, _mapper.Map<FullUsersBookDto>(newBook));
+            }
+            catch(Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, username + "'s " + "book with id "+ id + " could't be found.");
+            }
         }
     }
 }
