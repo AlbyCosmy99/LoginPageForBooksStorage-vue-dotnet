@@ -19,6 +19,7 @@
                     :items="books"
                     :search="search"
                     :items-per-page="10"
+                    :loading="loading"
                     class="elevation-1"
                 >
                     <template v-slot:top>
@@ -119,7 +120,11 @@
                                                 <v-text-field
                                                     v-model="editedItem.FinishingDate"
                                                     label="finishing Date"
-                                                ></v-text-field>
+                                                    readonly
+                                                    class="finishingDateEdit"
+                                                    @click="selectFinishingDate"
+                                                >
+                                            </v-text-field>
                                             </v-col>
 
                                             <v-col
@@ -218,6 +223,18 @@
                     </template>
                 </v-data-table>
             </div>
+            <v-dialog
+            v-model="editDateDialog"
+            width="auto"
+            >
+            <v-card>
+                <v-date-picker @change="onChangeDate"></v-date-picker>
+                <v-card-actions style="display: flex; flex-direction: row;justify-content: space-evenly;">
+                    <v-btn color="primary" @click="editDateDialog = false">Close Dialog</v-btn>
+                    <v-btn color="primary" @click="saveFinishingDate">Continue</v-btn>
+                </v-card-actions>
+            </v-card>
+            </v-dialog>
         </div>
     </v-main>
 </template>
@@ -235,6 +252,7 @@ export default {
             dialogDelete: false,
             bookIdToBeDeleted: -1,
             dialog: false,
+            editDateDialog: false,
             editedItem:  {
                     DbId: -1,
                     Title: '',
@@ -263,7 +281,9 @@ export default {
                 { text: 'Actions', value: 'actions', sortable: false },
             ],
             books: [],
-            ratings: ['-','1/10','2/10','3/10','4/10','5/10','6/10','7/10','8/10','9/10','10/10']
+            ratings: ['-','1/10','2/10','3/10','4/10','5/10','6/10','7/10','8/10','9/10','10/10'],
+            finishingDateChoosen: null,
+            loading: false,
         }
     },
     props : {
@@ -285,9 +305,11 @@ export default {
             });
         },
         getUserBooks() {
+            this.loading = true
             getUserBooks(this.username)
             .then(response => {
                 this.books = response.data
+                this.loading = false
             })
             .catch(() => {
                 console.log('User books not received correctly.')
@@ -322,14 +344,16 @@ export default {
         },
         save() {
             if(this.editedItem.DbId == -1) {
-                console.log('add book')
+                console.log('Add book')
             }
             else {
+                console.log('in: ' + this.editedItem.FinishingDate)
                 updateBook(this.username, this.editedItem.DbId, this.editedItem.Title, this.editedItem.Author, this.editedItem.Language,
                     this.editedItem.PubYear, this.editedItem.Pages, this.editedItem.Genre, this.editedItem.FinishingDate, this.editedItem.Price,
                     this.editedItem.PersonalRating, this.editedItem.Notes)
                     .then(() => {
                         console.log('book updated correctly.')
+                        this.getUserBooks();
                     })
                     .catch(error => {
                         console.log(error.message)
@@ -371,6 +395,19 @@ export default {
         },
         newBookClicked() {
             this.setDefaultEditedItem()
+        },
+        selectFinishingDate() {
+            this.editDateDialog = true
+        },
+        onChangeDate(value) {
+            let day = value.substring(8,10)
+            let month = value.substring(5,7)
+            let year = value.substring(0,4)
+            this.finishingDateChoosen = day + '/' + month + '/' + year
+        },
+        saveFinishingDate() {
+            this.editedItem.FinishingDate = this.finishingDateChoosen
+            this.editDateDialog = false
         }
     },
     computed: {
@@ -479,5 +516,8 @@ div.table .v-input__control {
 .addBookBtn {
     width: 100%; 
     padding: 10px;
+}
+input[readonly]{
+    cursor: pointer;
 }
 </style>

@@ -1,8 +1,8 @@
 ﻿using loginPage_v1.Models;
 using loginPage_v1.PageContext;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace loginPage_v1.Services
@@ -42,10 +42,15 @@ namespace loginPage_v1.Services
             _ctx.SaveChanges();
         }
 
-        public UsersBook UpdateBook(string username, int id, string title, string author, string language, int?  publicationYear, int? pages,
-            string genre, DateTime? finishingDate, string price, string personalRating, string notes)
+        public UsersBook UpdateBook(string username, int bookId, string title, string author, string language, int?  publicationYear, int? pages,
+            string genre, string finishingDate, string price, string personalRating, string notes)
         {
-            var book = GetUserBookById(username, id);
+            var book = GetUserBookById(username, bookId);
+
+            if(book == null)
+            {
+                throw new NullReferenceException("Book with id " + bookId + " not exists.");
+            }
 
             if (title != null)
             {
@@ -76,9 +81,6 @@ namespace loginPage_v1.Services
             {
                 book.Genre = genre;
             }
-            {
-                
-            }
 
             if (pages != null)
             {
@@ -87,7 +89,8 @@ namespace loginPage_v1.Services
 
             if (finishingDate != null)
             {
-                book.FinishingDate = finishingDate.Value;
+                DateTime.TryParseExact(finishingDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var date);
+                book.FinishingDate = date;
             }
 
             if (price != null)

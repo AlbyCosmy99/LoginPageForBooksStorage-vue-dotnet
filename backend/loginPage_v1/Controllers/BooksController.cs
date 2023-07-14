@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using loginPage_v1.App_Start;
 using loginPage_v1.Dto.UsersBookDto;
-using loginPage_v1.Models;
 using loginPage_v1.Services;
 using System;
 using System.Collections.Generic;
@@ -66,7 +65,7 @@ namespace loginPage_v1.Controllers
             public int? PublicationYear { get; set; } = null;
             public int? Pages { get; set; } = null;
             public string Genre { get; set; } = null;
-            public DateTime? FinishingDate { get; set; } = null;
+            public string FinishingDate { get; set; } = null;
             public string Price { get; set; } = null;
             public string PersonalRating { get; set; } = null;
             public string Notes { get; set; } = null;

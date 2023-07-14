@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main>
+    <v-main class="description">
       <v-btn v-if="showButton" @click="toggleLogin" style="margin-left: 600px;margin-top: 30px;">USER LOGGED?</v-btn>
       <div v-if="!userLogged">
         <LoginPage @login="login"/>
