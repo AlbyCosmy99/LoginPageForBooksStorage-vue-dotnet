@@ -93,5 +93,13 @@ namespace loginPage_v1.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, username + "'s " + "book with id "+ id + " could't be found.");
             }
         }
+
+        [Route("books/{username}/{id}")]
+        [HttpPost]
+        public HttpResponseMessage AddBook(string username, int id, BookRequest book)
+        {
+            //to be implemented
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
     }
 }

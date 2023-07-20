@@ -43,3 +43,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.description {
+  background-image: url('../src/assets/back-to-school-background-with-silhouette-of-books-feathers-school-tool-doodle-and-copy-space-area-suitable-to-place-on-content-with-that-theme-free-vector.jpg');
+  background-size: 100% 100%;
+}
+</style>
